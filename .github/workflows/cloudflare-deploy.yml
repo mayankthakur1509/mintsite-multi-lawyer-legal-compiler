@@ -113,9 +113,11 @@ jobs:
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: b6127331524e52ab169469af94d40a6c
         run: |
           echo "🚀 Deploying ${{ matrix.site }}"
           npx wrangler pages deploy dist/${{ matrix.site }}/site \
             --project-name=${{ matrix.site }} \
             --branch=main
+
 
