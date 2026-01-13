@@ -1,0 +1,295 @@
+{
+  "schema_version": "1.0.0",
+  "diagnostic_id": "wiggmax_isa_scan_v1",
+  "generated_at": "2026-01-08T16:38:20-05:00",
+  "naming_rules": {
+    "canonical": "Goal Measure",
+    "canonical_key": "goal_measure",
+    "deprecated_aliases": [
+      "PS",
+      "Proposed Solution",
+      "Proposed Measure",
+      "Target Measure",
+      "Goal"
+    ],
+    "red_warning_aliases": [
+      "PS",
+      "Proposed Solution"
+    ]
+  },
+  "scoring_models": {
+    "exposure": {
+      "range": [
+        0,
+        100
+      ],
+      "default_weight": 1.0,
+      "banding": [
+        {
+          "band": "low",
+          "min": 0,
+          "max": 39
+        },
+        {
+          "band": "medium",
+          "min": 40,
+          "max": 69
+        },
+        {
+          "band": "high",
+          "min": 70,
+          "max": 100
+        }
+      ],
+      "override_red_flags": [
+        {
+          "if_tags_any": [
+            "fbar_not_done"
+          ],
+          "set_band": "high",
+          "add_score": 15
+        },
+        {
+          "if_tags_any": [
+            "prior_gaps_yes"
+          ],
+          "set_band": "high",
+          "add_score": 10
+        }
+      ]
+    },
+    "readiness": {
+      "range": [
+        0,
+        100
+      ],
+      "signals": {
+        "report_conf_high": 20,
+        "docs_good": 20,
+        "position_memo_yes": 20,
+        "fbar_done": 10
+      },
+      "banding": [
+        {
+          "band": "low",
+          "min": 0,
+          "max": 34
+        },
+        {
+          "band": "medium",
+          "min": 35,
+          "max": 69
+        },
+        {
+          "band": "high",
+          "min": 70,
+          "max": 100
+        }
+      ]
+    },
+    "defensibility": {
+      "range": [
+        0,
+        100
+      ],
+      "signals": {
+        "docs_good": 40,
+        "docs_some_missing": 25,
+        "position_memo_yes": 40
+      },
+      "banding": [
+        {
+          "band": "weak",
+          "min": 0,
+          "max": 39
+        },
+        {
+          "band": "developing",
+          "min": 40,
+          "max": 69
+        },
+        {
+          "band": "strong",
+          "min": 70,
+          "max": 100
+        }
+      ]
+    },
+    "urgency": {
+      "range": [
+        0,
+        100
+      ],
+      "signals": {
+        "deadline_60d_yes": 40,
+        "irs_history_yes": 20
+      },
+      "banding": [
+        {
+          "band": "normal",
+          "min": 0,
+          "max": 39
+        },
+        {
+          "band": "soon",
+          "min": 40,
+          "max": 69
+        },
+        {
+          "band": "immediate",
+          "min": 70,
+          "max": 100
+        }
+      ]
+    }
+  },
+  "classification": {
+    "rules": [
+      {
+        "if": {
+          "exposure_band": "high"
+        },
+        "outcome": "HighRisk"
+      },
+      {
+        "if": {
+          "exposure_band": "medium"
+        },
+        "outcome": "Exposed"
+      },
+      {
+        "if": {
+          "exposure_band": "low"
+        },
+        "outcome": "Defensible"
+      }
+    ]
+  },
+  "toc_dominant_cause": {
+    "method": "theory_of_constraints",
+    "derive_from_signals": [
+      {
+        "cause_id": "privilege_limitation",
+        "if_tags_any": [
+          "client_cpa_firm"
+        ],
+        "score": 30
+      },
+      {
+        "cause_id": "data_quality_gap",
+        "if_tags_any": [
+          "report_conf_low",
+          "report_conf_unsure"
+        ],
+        "score": 35
+      },
+      {
+        "cause_id": "prior_year_gap",
+        "if_tags_any": [
+          "prior_gaps_yes"
+        ],
+        "score": 40
+      },
+      {
+        "cause_id": "account_reporting_gap",
+        "if_tags_any": [
+          "fbar_not_done",
+          "acct_value_unsure"
+        ],
+        "score": 30
+      },
+      {
+        "cause_id": "entity_complexity",
+        "if_tags_any": [
+          "own_over_50",
+          "own_trust_complex"
+        ],
+        "score": 35
+      }
+    ],
+    "selection_rule": "choose_single_highest_score",
+    "application_verified": {
+      "required": true,
+      "field_name": "toc.verified",
+      "required_value": true
+    }
+  },
+  "routing": {
+    "next_step": [
+      {
+        "if": {
+          "outcome": "HighRisk"
+        },
+        "recommendation": {
+          "cta": "schedule_consult",
+          "label": "Schedule a 15‑minute triage call",
+          "request_identity": true,
+          "mt_path": "mt_path_highrisk"
+        }
+      },
+      {
+        "if": {
+          "outcome": "Exposed",
+          "readiness_band": "medium"
+        },
+        "recommendation": {
+          "cta": "pp_workshop",
+          "label": "Run the ROI PP Workshop (2 hours)",
+          "request_identity": true,
+          "mt_path": "mt_path_exposed"
+        }
+      },
+      {
+        "if": {
+          "outcome": "Defensible"
+        },
+        "recommendation": {
+          "cta": "documentation_pack",
+          "label": "Get the defensibility checklist",
+          "request_identity": false,
+          "mt_path": "mt_path_defensible"
+        }
+      }
+    ]
+  },
+  "sms_policy": {
+    "send_sms_if_tag": "sms_opt_in_yes",
+    "request_identity_if": [
+      {
+        "outcome_in": [
+          "HighRisk",
+          "Exposed"
+        ],
+        "readiness_band_in": [
+          "medium",
+          "high"
+        ]
+      }
+    ]
+  },
+  "pp_integration": {
+    "create_goal_measure_in_pp": true,
+    "goal_measure_rules": {
+      "canonical_key": "goal_measure",
+      "states": [
+        "bau_measure",
+        "goal_measure",
+        "actual_measure"
+      ]
+    },
+    "sample_goal_measures": [
+      {
+        "measure_id": "partner_time_hours",
+        "bau_measure": {
+          "value": 190,
+          "unit": "hours/year"
+        },
+        "goal_measure": {
+          "value": 19,
+          "unit": "hours/year"
+        },
+        "direction": "down"
+      }
+    ]
+  }
+}

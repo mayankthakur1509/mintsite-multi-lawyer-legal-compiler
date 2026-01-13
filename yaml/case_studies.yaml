@@ -1,0 +1,65 @@
+case_studies:
+  - id: cs1
+    title: "Global Expat Tax Optimization"
+    lawyer: "john-smith"
+    practice: "expat-tax"
+    persona: "cfo"
+    summary: >
+      John Smith helped a multinational CFO reduce their overall tax liability
+      by optimizing treaty benefits and managing cross-border compliance efficiently.
+    outcomes:
+      - "Reduced global tax exposure by 15%"
+      - "Fully compliant filings across 5 jurisdictions"
+      - "Streamlined reporting process"
+
+  - id: cs2
+    title: "Cross-Border Compliance Overhaul"
+    lawyer: "john-smith"
+    practice: "international-compliance"
+    persona: "tax_director"
+    summary: >
+      Comprehensive compliance strategy implemented for a Fortune 500 company,
+      reducing audit risks and ensuring adherence to new international tax regulations.
+    outcomes:
+      - "Audit risk reduced by 40%"
+      - "Improved reporting efficiency"
+      - "Internal compliance training delivered"
+
+  - id: cs3
+    title: "Global Mobility Assignment Structuring"
+    lawyer: "sarah-lee"
+    practice: "global-mobility"
+    persona: "ceo"
+    summary: >
+      Sarah Lee designed a global mobility tax strategy for a CEO on international assignment,
+      balancing cost-efficiency with compliance in multiple host countries.
+    outcomes:
+      - "Minimized assignment tax costs by 20%"
+      - "Ensured compliance in 3 host jurisdictions"
+      - "Simplified payroll and reporting for assignee"
+
+  - id: cs4
+    title: "Expat Tax Advisory for International Team"
+    lawyer: "maria"
+    practice: "expat-tax"
+    persona: "gc"
+    summary: >
+      Maria advised the legal team on expat tax filings for employees relocating internationally,
+      ensuring treaty benefits were fully utilized and risks mitigated.
+    outcomes:
+      - "Maximized tax treaty benefits"
+      - "Zero compliance penalties"
+      - "Centralized tracking of expat tax filings"
+
+  - id: cs5
+    title: "Global Mobility Policy Implementation"
+    lawyer: "maria"
+    practice: "global-mobility"
+    persona: "cfo"
+    summary: >
+      Maria implemented a global mobility policy for multiple departments,
+      ensuring tax equalization, reporting, and immigration compliance were streamlined.
+    outcomes:
+      - "Policy adopted across 3 regions"
+      - "Improved compliance and employee satisfaction"
+      - "Reduced manual administration by 30%"

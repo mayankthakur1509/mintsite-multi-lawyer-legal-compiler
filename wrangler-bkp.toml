@@ -1,0 +1,27 @@
+name = "mintsite-full-production-bundle"
+main = "worker/_worker.js"
+compatibility_date = "2024-12-01"
+
+[vars]
+CF_PROJECT_NAME = "mintsite-full-production-bundle"
+RENDER_MODE = "react"
+
+[assets]
+directory = "./dist"
+
+# This is the correct format. Both production and local IDs are here.
+[[kv_namespaces]]
+binding = "ACTION_E_LOG"
+id = "221f1a3f166e480bb154bfe2860ebf3f"          # Production ID
+preview_id = "606811e7b6b444a8b15838c1f9d8bc6f"  # Local/Preview ID
+
+[[kv_namespaces]]
+binding = "SESSION_STORE"
+id = "88d4022d459c4b75940a88fb19725e66"          # Production ID
+preview_id = "45df77ee58f347f5ad0213fff009cb90"  # Local/Preview ID
+
+[env.production]
+kv_namespaces = [
+  { binding = "ACTION_E_LOG", id = "221f1a3f166e480bb154bfe2860ebf3f" },
+  { binding = "SESSION_STORE", id = "88d4022d459c4b75940a88fb19725e66" }
+]

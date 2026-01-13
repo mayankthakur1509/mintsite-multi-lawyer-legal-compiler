@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Compiler Output v3.2 (PR2)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "site",
+    "layout",
+    "content",
+    "routes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "site": {
+      "type": "object",
+      "required": [
+        "id",
+        "domain"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "theme": {
+          "type": "string"
+        }
+      }
+    },
+    "layout": {
+      "type": "string"
+    },
+    "content": {
+      "type": "object"
+    },
+    "routes": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

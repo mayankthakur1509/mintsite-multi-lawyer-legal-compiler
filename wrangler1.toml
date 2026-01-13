@@ -1,0 +1,5 @@
+name = "mintsite-pages"
+compatibility_date = "2024-12-01"
+
+# REQUIRED for Cloudflare Pages
+pages_build_output_dir = "dist"

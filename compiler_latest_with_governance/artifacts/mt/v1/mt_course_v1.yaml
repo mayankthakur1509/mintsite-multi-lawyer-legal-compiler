@@ -1,0 +1,91 @@
+course:
+  course_id: mt_tax_pp_v1
+  title: "International Tax PP Microtraining"
+  version: "1.0.0"
+  generated_at: "2026-01-08T16:38:20-05:00"
+  diagnostic_id: "wiggmax_isa_scan_v1"
+  canonical_terms:
+    goal_measure: "Goal Measure"
+    states: ["BAU", "Goal", "Actual"]
+  paths:
+    mt_path_highrisk:
+      description: "High-risk exposure path (triage + stabilization)."
+      modules: [m1_foundations, m2_exposure_map, m3_defensibility, m4_privilege_rep, m5_next_steps]
+    mt_path_exposed:
+      description: "Exposure + gaps path (workshop-first)."
+      modules: [m1_foundations, m2_exposure_map, m3_defensibility, m5_next_steps]
+    mt_path_defensible:
+      description: "Defensible path (documentation maintenance)."
+      modules: [m1_foundations, m3_defensibility, m5_next_steps]
+  modules:
+    - id: m1_foundations
+      title: "What This Diagnostic Measures"
+      minutes: 12
+      outcomes:
+        - "Define BAU vs Goal Measure vs Actual"
+        - "Explain exposure vs readiness vs defensibility"
+      topics:
+        - id: t1_states
+          title: "BAU, Goal Measure, Actual"
+          minutes: 6
+        - id: t2_scoring
+          title: "Exposure and Readiness Scoring"
+          minutes: 6
+    - id: m2_exposure_map
+      title: "Exposure Map: Accounts, Entities, Residency, Income"
+      minutes: 18
+      outcomes:
+        - "Identify exposure drivers"
+        - "Capture evidence checklist"
+      topics:
+        - id: t3_accounts
+          title: "Accounts and Reporting Signals"
+          minutes: 6
+        - id: t4_entities
+          title: "Entities and Ownership Signals"
+          minutes: 6
+        - id: t5_residency_income
+          title: "Residency and Income Signals"
+          minutes: 6
+    - id: m3_defensibility
+      title: "Defensibility: Assumptions → Evidence → Positions"
+      minutes: 18
+      outcomes:
+        - "Draft assumptions list"
+        - "Define evidence requests"
+      topics:
+        - id: t6_assumptions
+          title: "Assumptions Inventory"
+          minutes: 6
+        - id: t7_evidence
+          title: "Evidence Checklist"
+          minutes: 6
+        - id: t8_position_memo
+          title: "Position Memo Basics"
+          minutes: 6
+    - id: m4_privilege_rep
+      title: "Privilege and Representation Constraint"
+      minutes: 12
+      outcomes:
+        - "Explain why legal work is throughput-gated"
+        - "Identify the single ToC constraint"
+      topics:
+        - id: t9_privilege
+          title: "Privilege Limitations"
+          minutes: 6
+        - id: t10_capacity
+          title: "Legal Review Capacity as Throughput"
+          minutes: 6
+    - id: m5_next_steps
+      title: "Next Steps: Workshop, Documentation Pack, Triage"
+      minutes: 10
+      outcomes:
+        - "Choose next step based on outcome"
+        - "Know when identity is requested"
+      topics:
+        - id: t11_workshop
+          title: "ROI PP Workshop Overview"
+          minutes: 5
+        - id: t12_checklist
+          title: "Documentation Pack"
+          minutes: 5

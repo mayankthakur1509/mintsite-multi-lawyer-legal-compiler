@@ -1,0 +1,541 @@
+{
+  "schema_version": "1.0.0",
+  "diagnostic_id": "wiggmax_isa_scan_v1",
+  "title": "International Tax ISA/Scan Diagnostic",
+  "description": "Privacy-first diagnostic that classifies exposure and readiness, then routes to the right next step.",
+  "generated_at": "2026-01-08T16:38:20-05:00",
+  "sections": [
+    {
+      "id": "scope",
+      "title": "Scope"
+    },
+    {
+      "id": "accounts",
+      "title": "Accounts & Assets"
+    },
+    {
+      "id": "entities",
+      "title": "Entities & Ownership"
+    },
+    {
+      "id": "residency",
+      "title": "Residency & Presence"
+    },
+    {
+      "id": "income",
+      "title": "Income & Reporting"
+    },
+    {
+      "id": "prior_years",
+      "title": "Prior-Year Uncertainty"
+    },
+    {
+      "id": "defensibility",
+      "title": "Defensibility & Evidence"
+    },
+    {
+      "id": "urgency",
+      "title": "Urgency & Timing"
+    },
+    {
+      "id": "next_step",
+      "title": "Next Step (Consent)"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_scope_client_type",
+      "section": "scope",
+      "type": "single_choice",
+      "prompt": "Which best describes your situation?",
+      "options": [
+        {
+          "label": "Individual taxpayer",
+          "tag": "client_individual"
+        },
+        {
+          "label": "Business owner / operator",
+          "tag": "client_business_owner"
+        },
+        {
+          "label": "CPA firm evaluating a client matter",
+          "tag": "client_cpa_firm"
+        },
+        {
+          "label": "Not sure",
+          "tag": "client_unsure"
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "q_accounts_foreign",
+      "section": "accounts",
+      "type": "single_choice",
+      "prompt": "Do you (or your entity) have foreign financial accounts (bank, brokerage, crypto exchange outside the U.S.)?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "acct_foreign_yes"
+        },
+        {
+          "label": "No",
+          "tag": "acct_foreign_no"
+        },
+        {
+          "label": "Not sure",
+          "tag": "acct_foreign_unsure"
+        }
+      ],
+      "required": true,
+      "scoring": {
+        "exposure": {
+          "acct_foreign_yes": 20,
+          "acct_foreign_unsure": 10
+        }
+      }
+    },
+    {
+      "id": "q_accounts_max_value",
+      "section": "accounts",
+      "type": "single_choice",
+      "prompt": "At any point in the last year, what was the highest total value of foreign accounts combined?",
+      "options": [
+        {
+          "label": "Under $10,000",
+          "tag": "acct_under_10k"
+        },
+        {
+          "label": "$10,000–$50,000",
+          "tag": "acct_10k_50k"
+        },
+        {
+          "label": "$50,000–$250,000",
+          "tag": "acct_50k_250k"
+        },
+        {
+          "label": "Over $250,000",
+          "tag": "acct_over_250k"
+        },
+        {
+          "label": "Not sure",
+          "tag": "acct_value_unsure"
+        }
+      ],
+      "required": false,
+      "depends_on": {
+        "question_id": "q_accounts_foreign",
+        "tags_any": [
+          "acct_foreign_yes",
+          "acct_foreign_unsure"
+        ]
+      },
+      "scoring": {
+        "exposure": {
+          "acct_10k_50k": 10,
+          "acct_50k_250k": 20,
+          "acct_over_250k": 30,
+          "acct_value_unsure": 15
+        }
+      }
+    },
+    {
+      "id": "q_accounts_fbarg",
+      "section": "accounts",
+      "type": "single_choice",
+      "prompt": "Have FBAR/FinCEN reporting requirements been addressed for those accounts?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "fbar_done"
+        },
+        {
+          "label": "No",
+          "tag": "fbar_not_done"
+        },
+        {
+          "label": "Not sure",
+          "tag": "fbar_unsure"
+        }
+      ],
+      "depends_on": {
+        "question_id": "q_accounts_foreign",
+        "tags_any": [
+          "acct_foreign_yes",
+          "acct_foreign_unsure"
+        ]
+      },
+      "scoring": {
+        "exposure": {
+          "fbar_not_done": 25,
+          "fbar_unsure": 10
+        },
+        "readiness": {
+          "fbar_done": 10
+        }
+      }
+    },
+    {
+      "id": "q_entities_foreign_entity",
+      "section": "entities",
+      "type": "single_choice",
+      "prompt": "Do you own or control any non‑U.S. business entities (company, partnership, trust)?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "entity_foreign_yes"
+        },
+        {
+          "label": "No",
+          "tag": "entity_foreign_no"
+        },
+        {
+          "label": "Not sure",
+          "tag": "entity_foreign_unsure"
+        }
+      ],
+      "scoring": {
+        "exposure": {
+          "entity_foreign_yes": 25,
+          "entity_foreign_unsure": 10
+        }
+      }
+    },
+    {
+      "id": "q_entities_ownership_level",
+      "section": "entities",
+      "type": "single_choice",
+      "prompt": "If yes, what is your approximate ownership/control level?",
+      "options": [
+        {
+          "label": "Minor stake (under 10%)",
+          "tag": "own_under_10"
+        },
+        {
+          "label": "Significant (10%–50%)",
+          "tag": "own_10_50"
+        },
+        {
+          "label": "Controlling (over 50%)",
+          "tag": "own_over_50"
+        },
+        {
+          "label": "Trust/complex structure",
+          "tag": "own_trust_complex"
+        },
+        {
+          "label": "Not sure",
+          "tag": "own_unsure"
+        }
+      ],
+      "depends_on": {
+        "question_id": "q_entities_foreign_entity",
+        "tags_any": [
+          "entity_foreign_yes",
+          "entity_foreign_unsure"
+        ]
+      },
+      "scoring": {
+        "exposure": {
+          "own_10_50": 10,
+          "own_over_50": 25,
+          "own_trust_complex": 30,
+          "own_unsure": 10
+        }
+      }
+    },
+    {
+      "id": "q_residency_us_person",
+      "section": "residency",
+      "type": "single_choice",
+      "prompt": "Are you a U.S. person for tax purposes (citizen/green card/substantial presence)?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "us_person_yes"
+        },
+        {
+          "label": "No",
+          "tag": "us_person_no"
+        },
+        {
+          "label": "Not sure",
+          "tag": "us_person_unsure"
+        }
+      ],
+      "scoring": {
+        "exposure": {
+          "us_person_unsure": 10
+        },
+        "readiness": {
+          "us_person_yes": 5,
+          "us_person_no": 5
+        }
+      }
+    },
+    {
+      "id": "q_residency_multiple_countries",
+      "section": "residency",
+      "type": "single_choice",
+      "prompt": "Did you live, work, or spend substantial time in more than one country last year?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "multi_country_yes"
+        },
+        {
+          "label": "No",
+          "tag": "multi_country_no"
+        },
+        {
+          "label": "Not sure",
+          "tag": "multi_country_unsure"
+        }
+      ],
+      "scoring": {
+        "exposure": {
+          "multi_country_yes": 15,
+          "multi_country_unsure": 8
+        }
+      }
+    },
+    {
+      "id": "q_income_foreign_income",
+      "section": "income",
+      "type": "single_choice",
+      "prompt": "Do you have foreign-source income (wages, dividends, rent, business income) or overseas payroll?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "foreign_income_yes"
+        },
+        {
+          "label": "No",
+          "tag": "foreign_income_no"
+        },
+        {
+          "label": "Not sure",
+          "tag": "foreign_income_unsure"
+        }
+      ],
+      "scoring": {
+        "exposure": {
+          "foreign_income_yes": 20,
+          "foreign_income_unsure": 10
+        }
+      }
+    },
+    {
+      "id": "q_income_reporting_quality",
+      "section": "income",
+      "type": "single_choice",
+      "prompt": "How confident are you in the completeness of reporting (income, accounts, entities) for the last 3 years?",
+      "options": [
+        {
+          "label": "High confidence",
+          "tag": "report_conf_high"
+        },
+        {
+          "label": "Some uncertainty",
+          "tag": "report_conf_med"
+        },
+        {
+          "label": "Low confidence",
+          "tag": "report_conf_low"
+        },
+        {
+          "label": "Not sure",
+          "tag": "report_conf_unsure"
+        }
+      ],
+      "scoring": {
+        "exposure": {
+          "report_conf_low": 25,
+          "report_conf_med": 15,
+          "report_conf_unsure": 15
+        },
+        "readiness": {
+          "report_conf_high": 10
+        }
+      }
+    },
+    {
+      "id": "q_prior_years_amended",
+      "section": "prior_years",
+      "type": "single_choice",
+      "prompt": "Have you had to amend returns or address IRS correspondence related to cross-border issues?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "irs_history_yes"
+        },
+        {
+          "label": "No",
+          "tag": "irs_history_no"
+        },
+        {
+          "label": "Not sure",
+          "tag": "irs_history_unsure"
+        }
+      ],
+      "scoring": {
+        "exposure": {
+          "irs_history_yes": 20,
+          "irs_history_unsure": 10
+        },
+        "urgency": {
+          "irs_history_yes": 10
+        }
+      }
+    },
+    {
+      "id": "q_prior_years_gaps",
+      "section": "prior_years",
+      "type": "single_choice",
+      "prompt": "Do you believe there may be prior-year filing/reporting gaps (accounts/entities/forms)?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "prior_gaps_yes"
+        },
+        {
+          "label": "No",
+          "tag": "prior_gaps_no"
+        },
+        {
+          "label": "Not sure",
+          "tag": "prior_gaps_unsure"
+        }
+      ],
+      "scoring": {
+        "exposure": {
+          "prior_gaps_yes": 30,
+          "prior_gaps_unsure": 15
+        }
+      }
+    },
+    {
+      "id": "q_def_docs_available",
+      "section": "defensibility",
+      "type": "single_choice",
+      "prompt": "Do you have supporting evidence available (statements, ownership docs, residency logs, contracts)?",
+      "options": [
+        {
+          "label": "Mostly available",
+          "tag": "docs_good"
+        },
+        {
+          "label": "Some missing",
+          "tag": "docs_some_missing"
+        },
+        {
+          "label": "Many missing",
+          "tag": "docs_many_missing"
+        },
+        {
+          "label": "Not sure",
+          "tag": "docs_unsure"
+        }
+      ],
+      "scoring": {
+        "defensibility": {
+          "docs_good": 20,
+          "docs_some_missing": 10,
+          "docs_many_missing": 0,
+          "docs_unsure": 5
+        },
+        "readiness": {
+          "docs_good": 10,
+          "docs_some_missing": 5
+        }
+      }
+    },
+    {
+      "id": "q_def_position_memo",
+      "section": "defensibility",
+      "type": "single_choice",
+      "prompt": "Do you already have a written position/assumptions memo for key cross-border items?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "position_memo_yes"
+        },
+        {
+          "label": "No",
+          "tag": "position_memo_no"
+        },
+        {
+          "label": "Not sure",
+          "tag": "position_memo_unsure"
+        }
+      ],
+      "scoring": {
+        "defensibility": {
+          "position_memo_yes": 20,
+          "position_memo_no": 0,
+          "position_memo_unsure": 5
+        }
+      }
+    },
+    {
+      "id": "q_urgency_deadline",
+      "section": "urgency",
+      "type": "single_choice",
+      "prompt": "Is there an upcoming deadline or event (audit, transaction, relocation, filing date) within 60 days?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "deadline_60d_yes"
+        },
+        {
+          "label": "No",
+          "tag": "deadline_60d_no"
+        },
+        {
+          "label": "Not sure",
+          "tag": "deadline_60d_unsure"
+        }
+      ],
+      "scoring": {
+        "urgency": {
+          "deadline_60d_yes": 25,
+          "deadline_60d_unsure": 10
+        }
+      }
+    },
+    {
+      "id": "q_next_step_contact",
+      "section": "next_step",
+      "type": "single_choice",
+      "prompt": "Do you want a short summary and next-step recommendation by SMS?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "sms_opt_in_yes"
+        },
+        {
+          "label": "No",
+          "tag": "sms_opt_in_no"
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "q_next_step_identity",
+      "section": "next_step",
+      "type": "single_choice",
+      "prompt": "If risk is elevated, are you open to sharing contact details for a follow-up?",
+      "options": [
+        {
+          "label": "Yes",
+          "tag": "identity_opt_in_yes"
+        },
+        {
+          "label": "No",
+          "tag": "identity_opt_in_no"
+        }
+      ],
+      "required": false
+    }
+  ]
+}

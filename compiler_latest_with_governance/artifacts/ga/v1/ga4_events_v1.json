@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0.0",
+  "diagnostic_id": "wiggmax_isa_scan_v1",
+  "generated_at": "2026-01-08T16:38:20-05:00",
+  "events": [
+    {
+      "name": "diagnostic_started",
+      "params": [
+        {
+          "name": "diagnostic_id",
+          "type": "string"
+        },
+        {
+          "name": "session_id",
+          "type": "string"
+        },
+        {
+          "name": "page",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "diagnostic_question_answered",
+      "params": [
+        {
+          "name": "diagnostic_id",
+          "type": "string"
+        },
+        {
+          "name": "session_id",
+          "type": "string"
+        },
+        {
+          "name": "question_id",
+          "type": "string"
+        },
+        {
+          "name": "answer_tag",
+          "type": "string"
+        },
+        {
+          "name": "section_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "diagnostic_completed",
+      "params": [
+        {
+          "name": "diagnostic_id",
+          "type": "string"
+        },
+        {
+          "name": "session_id",
+          "type": "string"
+        },
+        {
+          "name": "exposure_band",
+          "type": "string"
+        },
+        {
+          "name": "readiness_band",
+          "type": "string"
+        },
+        {
+          "name": "defensibility_band",
+          "type": "string"
+        },
+        {
+          "name": "urgency_band",
+          "type": "string"
+        },
+        {
+          "name": "outcome",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "diagnostic_identity_requested",
+      "params": [
+        {
+          "name": "diagnostic_id",
+          "type": "string"
+        },
+        {
+          "name": "session_id",
+          "type": "string"
+        },
+        {
+          "name": "reason",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "workshop_cta_clicked",
+      "params": [
+        {
+          "name": "diagnostic_id",
+          "type": "string"
+        },
+        {
+          "name": "session_id",
+          "type": "string"
+        },
+        {
+          "name": "cta",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "sms_sent",
+      "params": [
+        {
+          "name": "template_id",
+          "type": "string"
+        },
+        {
+          "name": "outcome",
+          "type": "string"
+        },
+        {
+          "name": "session_id",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "diagnostic_id": "wiggmax_isa_scan_v1",
+  "generated_at": "2026-01-08T16:38:20-05:00",
+  "templates": [
+    {
+      "template_id": "sms_diag_summary_highrisk",
+      "channel": "sms",
+      "trigger": {
+        "event": "diagnostic_completed",
+        "outcome": "HighRisk"
+      },
+      "body": "Your scan shows HIGH RISK cross‑border exposure. Next step: a 15‑minute triage call. Reply YES to share contact details, or NO to receive a checklist only.",
+      "tokens": [
+        "{brand}",
+        "{first_name?}"
+      ],
+      "smsit": {
+        "category": "diagnostic",
+        "priority": "high"
+      }
+    },
+    {
+      "template_id": "sms_diag_summary_exposed",
+      "channel": "sms",
+      "trigger": {
+        "event": "diagnostic_completed",
+        "outcome": "Exposed"
+      },
+      "body": "Your scan shows exposure + gaps. Best next step: the 2‑hour ROI PP Workshop to define assumptions→evidence→positions. Reply YES for scheduling options.",
+      "tokens": [
+        "{brand}",
+        "{first_name?}"
+      ],
+      "smsit": {
+        "category": "diagnostic",
+        "priority": "medium"
+      }
+    },
+    {
+      "template_id": "sms_diag_summary_defensible",
+      "channel": "sms",
+      "trigger": {
+        "event": "diagnostic_completed",
+        "outcome": "Defensible"
+      },
+      "body": "Your scan looks defensible based on your answers. Want a one‑page defensibility checklist + documentation pack? Reply YES and we’ll send it.",
+      "tokens": [
+        "{brand}",
+        "{first_name?}"
+      ],
+      "smsit": {
+        "category": "diagnostic",
+        "priority": "low"
+      }
+    },
+    {
+      "template_id": "sms_identity_request",
+      "channel": "sms",
+      "trigger": {
+        "event": "identity_requested"
+      },
+      "body": "To tailor next steps, share best email + name (or reply SKIP). Privacy-first: we only ask when it changes your recommendation.",
+      "tokens": [],
+      "smsit": {
+        "category": "privacy",
+        "priority": "medium"
+      }
+    },
+    {
+      "template_id": "sms_workshop_confirm",
+      "channel": "sms",
+      "trigger": {
+        "event": "workshop_scheduled"
+      },
+      "body": "Confirmed: ROI PP Workshop. You’ll receive the pre-work checklist + evidence pack request. Goal Measure is captured during the workshop (target vs BAU).",
+      "tokens": [
+        "{workshop_date}",
+        "{workshop_time}"
+      ],
+      "smsit": {
+        "category": "workshop",
+        "priority": "medium"
+      }
+    }
+  ]
+}

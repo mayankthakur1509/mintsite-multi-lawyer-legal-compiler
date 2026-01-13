@@ -1,0 +1,72 @@
+schema_version: "3.2"
+site:
+  id: "wiggmax"
+  domain: "wiggmax.com"
+  theme: "legal"
+  brand: "WiggMax — International Tax"
+
+hero:
+  headline: "International Tax Help When the Stakes Are High"
+  subhead: "Diagnose your exposure, understand options, and act with a governed plan."
+
+pillars:
+  - id: "diagnose"
+    title: "Diagnose"
+    bullets:
+      - "Define the situation and risk"
+      - "Identify constraints and proof needed"
+  - id: "educate"
+    title: "Educate"
+    bullets:
+      - "Explain options, tradeoffs, and documentation"
+      - "Claims-safe guidance, no promises"
+  - id: "act"
+    title: "Act"
+    bullets:
+      - "Book a consult / start intake"
+      - "Next steps based on readiness"
+
+offers:
+  workshop:
+    title: "Tax Risk Working Session"
+    cta_label: "Request Consult"
+    cta_href: "/act/workshop"
+  vflp:
+    title: "Engagement / Next Steps"
+    cta_label: "See Next Steps"
+    cta_href: "/act/vflp"
+
+pages:
+  - id: "home"
+    slug: "/"
+    title: "International Tax"
+    sections:
+      - type: "hero"
+      - type: "pillars"
+      - type: "offers"
+  - id: "diagnose"
+    slug: "/diagnose"
+    title: "Diagnose"
+    sections:
+      - type: "hero"
+      - type: "pillars"
+      - type: "offers"
+  - id: "educate"
+    slug: "/educate"
+    title: "Educate"
+    sections:
+      - type: "hero"
+      - type: "pillars"
+      - type: "offers"
+  - id: "workshop"
+    slug: "/act/workshop"
+    title: "Consult"
+    sections:
+      - type: "hero"
+      - type: "offers"
+  - id: "vflp"
+    slug: "/act/vflp"
+    title: "Next Steps"
+    sections:
+      - type: "hero"
+      - type: "offers"

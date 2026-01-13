@@ -1,0 +1,40 @@
+outcomes:
+  - id: o1
+    title: "Reduced Global Tax Exposure"
+    description: "Successfully minimized the overall tax liability for multinational clients by leveraging treaty benefits and optimized planning."
+
+  - id: o2
+    title: "Audit Risk Reduction"
+    description: "Implemented compliance programs and strategies that significantly reduce audit exposure for cross-border operations."
+
+  - id: o3
+    title: "Faster Filings"
+    description: "Streamlined reporting and filing processes to accelerate tax and compliance submissions across multiple jurisdictions."
+
+  - id: o4
+    title: "Improved Reporting Accuracy"
+    description: "Enhanced internal reporting mechanisms to ensure accurate, timely, and fully compliant reporting for international clients."
+
+  - id: o5
+    title: "Cost Optimization for Global Assignments"
+    description: "Designed tax-efficient structures for global mobility assignments, reducing overall costs and improving financial planning."
+
+  - id: o6
+    title: "Policy Implementation Across Regions"
+    description: "Successfully rolled out global mobility and compliance policies across multiple regions, standardizing procedures and reducing errors."
+
+  - id: o7
+    title: "Employee Satisfaction & Compliance"
+    description: "Balanced compliance needs with employee-friendly policies, improving satisfaction while minimizing tax and legal risks."
+
+  - id: o8
+    title: "Centralized Tax Filing Tracking"
+    description: "Implemented a centralized system to track expatriate tax filings, ensuring transparency, accountability, and efficiency."
+
+  - id: o9
+    title: "Enhanced Treaty Position"
+    description: "Strengthened clients’ positions under international tax treaties, leading to fewer disputes and optimized benefits."
+
+  - id: o10
+    title: "Manual Process Reduction"
+    description: "Reduced manual intervention in tax and mobility administration by leveraging automation and process improvements."

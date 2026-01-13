@@ -1,0 +1,91 @@
+schema_version: "3.2"
+site:
+  id: "sarnosites"
+  domain: "sarnosites.com"
+  theme: "creator"
+  brand: "ROI AI GTM"
+
+hero:
+  headline: "Launch a High-Authority Website in Minutes — Powered by AI + Value Modeling"
+  subhead: "No templates. No complexity. Your brand, your value, your outcomes — delivered instantly."
+
+features:
+  - title: "AI-Designed Pages"
+    desc: "Built from your resume, value map, or business scan."
+  - title: "Authority-Grade Layouts"
+    desc: "Conversion-optimized, SEO-ready, tailored to your vertical."
+  - title: "Semantic Personalization"
+    desc: "Every visitor sees messages aligned to persona + intent."
+
+pillars:
+  - id: "identify"
+    title: "Identify Value"
+    bullets:
+      - "Problem Pyramid + ICP + constraints"
+      - "Define proof needed (what must be true)"
+  - id: "quantify"
+    title: "Quantify Value"
+    bullets:
+      - "Baseline → target → timeframe"
+      - "CFO-certifiable assumptions"
+  - id: "communicate"
+    title: "Communicate Value"
+    bullets:
+      - "Pillars + differentiators + proof objects"
+      - "Stakeholder-specific framing"
+  - id: "measure"
+    title: "Measure Value"
+    bullets:
+      - "Signals + events + telemetry plan"
+      - "ROI Watch / ActionE readiness"
+  - id: "govern"
+    title: "Govern Value"
+    bullets:
+      - "Claims-safe + PII rules + policy tags"
+      - "What the system will NOT do"
+
+offers:
+  workshop:
+    title: "PP + Value Map Working Session"
+    cta_label: "Start Free • No Credit Card"
+    cta_href: "/act/workshop"
+  vflp:
+    title: "VFLP + ROI Tools"
+    cta_label: "See VFLP"
+    cta_href: "/act/vflp"
+
+pages:
+  - id: "home"
+    slug: "/"
+    title: "Build Authority in 60 Minutes"
+    sections:
+      - type: "hero"
+      - type: "features"
+      - type: "pillars"
+      - type: "offers"
+  - id: "diagnose"
+    slug: "/diagnose"
+    title: "Diagnose"
+    sections:
+      - type: "hero"
+      - type: "pillars"
+      - type: "offers"
+  - id: "educate"
+    slug: "/educate"
+    title: "Educate"
+    sections:
+      - type: "hero"
+      - type: "pillars"
+      - type: "offers"
+  - id: "workshop"
+    slug: "/act/workshop"
+    title: "Workshop"
+    sections:
+      - type: "hero"
+      - type: "offers"
+  - id: "vflp"
+    slug: "/act/vflp"
+    title: "VFLP"
+    sections:
+      - type: "hero"
+      - type: "offers"

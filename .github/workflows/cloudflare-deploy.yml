@@ -1,0 +1,122 @@
+# name: Build & Deploy MintSite Enterprise
+
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - "compiler/**"
+#       - "engine/**"
+#       - "worker/**"
+#       - "src/**"
+#       - "yaml/**"
+#       - "semantic/**"
+#       - "package.json"
+#       - ".github/workflows/**"
+
+# permissions:
+#   contents: write
+
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
+
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: "20"
+
+#       - name: Install dependencies
+#         run: npm install
+
+#       - name: Clean previous dist
+#         run: rm -rf dist
+
+#       - name: Compile MintSite (YAML → Manifest)
+#         run: node compiler/index.js
+
+#       - name: Commit compiled output
+#         run: |
+#           git config user.name "github-actions[bot]"
+#           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+#           git add -f dist
+#           if git diff --cached --quiet; then
+#             echo "No changes in dist/"
+#             exit 0
+#           fi
+#           git commit -m "Auto-compiled MintSite output [skip ci]"
+#           git push origin main
+
+#       # - name: Deploy to Cloudflare Pages
+#       #   uses: cloudflare/pages-action@v1
+#       #   with:
+#       #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+#       #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+#       #     projectName: ${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
+#       #     directory: dist
+
+#       - name: Deploy Worker
+#         uses: cloudflare/wrangler-action@v3
+#         with:
+#           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+#           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+#           workingDirectory: "./worker"
+#           # optional: run specific command
+#           command: deploy --env production
+
+
+
+name: Build & Deploy MintSite Multisite
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "compiler_latest_with_governance/**"
+      - "yaml/sites/**"
+      - "scripts/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        site: [wiggmax, sarnosites, asarno]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r compiler_latest_with_governance/requirements.txt
+
+      - name: Compile site
+        run: |
+          python -m compiler_latest_with_governance.compiler.main \
+            yaml/sites/${{ matrix.site }}.yaml \
+            dist/${{ matrix.site }}/site
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          echo "🚀 Deploying ${{ matrix.site }}"
+          npx wrangler pages deploy dist/${{ matrix.site }}/site \
+            --project-name=${{ matrix.site }} \
+            --branch=main \
+            --account-id=00586975ab8997cf535ee46b59498b2a
+

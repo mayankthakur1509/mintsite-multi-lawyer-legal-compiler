@@ -1,0 +1,46 @@
+lawyers:
+  - id: "john-smith"
+    name: "John Smith"
+    title: "International Tax Attorney"
+    bio: "20 years of cross-border experience advising Fortune 500 companies and expat executives. Specializes in treaty planning, compliance audits, and tax-efficient structuring."
+    practices:
+      - expat-tax
+      - international-compliance
+
+  - id: "sarah-lee"
+    name: "Sarah Lee"
+    title: "Global Mobility Tax Specialist"
+    bio: "Big4-trained global mobility leader with expertise in expatriate taxation, relocation planning, and international compensation strategies. Known for reducing audit risk for clients."
+    practices:
+      - global-mobility
+
+  - id: "maria-garcia"
+    name: "Maria Garcia"
+    title: "International Tax Attorney"
+    bio: "Advises multinational clients on cross-border compliance, global mobility programs, and expat tax planning. Experienced in handling complex treaty applications and high-net-worth clients."
+    practices:
+      - global-mobility
+      - expat-tax
+
+  - id: "alex-wong"
+    name: "Alex Wong"
+    title: "Tax Director"
+    bio: "Over 15 years leading corporate tax teams, managing international compliance, and implementing efficient reporting processes. Expert in risk reduction and cost optimization."
+    practices:
+      - international-compliance
+      - global-mobility
+
+  - id: "emma-johnson"
+    name: "Emma Johnson"
+    title: "Expat Tax Specialist"
+    bio: "Focuses on expat taxation, including treaty optimization, social security agreements, and expatriate filings. Recognized for simplifying complex cross-border tax matters for executives."
+    practices:
+      - expat-tax
+
+  - id: "test"
+    name: "Emma Johnson test"
+    title: "Expat Tax Specialist"
+    bio: "Focuses on expat taxation, including treaty optimization, social security agreements, and expatriate filings. Recognized for simplifying complex cross-border tax matters for executives."
+    practices:
+      - expat-tax
+    

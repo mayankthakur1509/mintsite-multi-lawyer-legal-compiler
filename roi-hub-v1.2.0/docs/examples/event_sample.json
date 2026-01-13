@@ -1,0 +1,87 @@
+{
+  "event_id": "8b1c6a2a-5b21-4e2d-b4d6-5b0a3b6b1f42",
+  "event_type": "consult_booked",
+  "schema_version": "0.1",
+  "occurred_at": "2026-01-06T18:42:11Z",
+  "received_at": "2026-01-06T18:42:12Z",
+  "source": "smsit",
+  "environment": "prod",
+
+  "trace_id": "3f9e2b1f-6e4d-4a4b-9c07-9c2f0c7a6caa",
+  "session_id": "sess_9d8f3a1c2b",
+  "request_id": "req_01HYSARN0ROI01",
+
+  "org_id": "org_valuelogic",
+  "site_id": "site_sarnosites",
+  "account_id": "acct_internal_valuelogic",
+  "contact_id": "ctc_7e5d2c1a-1f3b-4c2d-a9e1-3f7d9b2c4a11",
+
+  "actor": { "type": "user", "id": "ctc_7e5d2c1a-1f3b-4c2d-a9e1-3f7d9b2c4a11" },
+
+  "persona_id": "per_saas_partner",
+  "journey_stage": "decision",
+  "offer_id": "off_pp_workshop_proof_build_10d",
+  "pp_id": "pp_b2b_saas_retention_value_alignment",
+  "pp_cause_id": "ppc_value_not_measured",
+  "outcome_id": "out_increase_nrr",
+  "metric_id": "met_db_nrr",
+  "differentiator_id": "dif_audit_ready_proof_trail",
+
+  "data": {
+    "calendar": "asarno_partner_call",
+    "booking_method": "sms",
+    "start_at": "2026-01-07T16:00:00Z",
+    "end_at": "2026-01-07T16:15:00Z",
+    "channel": "sms",
+    "lead_context": {
+      "channel": "google_ads",
+      "utm": {
+        "source": "google",
+        "medium": "cpc",
+        "campaign": "roi-aim-retention",
+        "term": "braze retention",
+        "content": "v1"
+      },
+      "landing_page": "https://sarnosites.com/roi-ai-gtm",
+      "geo": { "country": "US", "region": "FL", "city": "Lake Worth Beach" }
+    },
+    "pp_summary": {
+      "problem_type": "retention_leakage",
+      "severity": "high",
+      "stake_band": "250k+",
+      "deadline": "2026-01-31",
+      "fit": "fit"
+    }
+  },
+
+  "metrics": [
+    {
+      "name": "Consult Booking Rate",
+      "unit": "percent",
+      "baseline": 0.0,
+      "target": 5.0,
+      "actual": 1.0,
+      "delta": 1.0,
+      "method": "events: consult_booked / leads",
+      "confidence": 0.7
+    }
+  ],
+
+  "proof": [
+    {
+      "type": "demo_video",
+      "title": "2-minute pipeline demo",
+      "url": "https://wiggmax.com/proof/pipeline-demo",
+      "hash": "sha256:TO_BE_FILLED",
+      "note": "Shared immediately after booking"
+    }
+  ],
+
+  "governance": {
+    "consent": true,
+    "pii_present": false,
+    "claims_safe": true,
+    "policy_tags": ["b2b_marketing", "value_proof", "automation"],
+    "retention_class": "standard"
+  }
+}

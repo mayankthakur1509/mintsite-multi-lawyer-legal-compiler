@@ -1,0 +1,42 @@
+practice_areas:
+  - id: expat-tax
+    name: Expat Tax Advisory
+    description: >
+      Comprehensive tax planning and compliance services for expatriates and globally mobile executives.
+      Our team ensures clients maximize treaty benefits while staying fully compliant with all jurisdictions.
+    benefits:
+      - "Optimized tax treaty utilization"
+      - "Minimized global tax liability"
+      - "Reduced audit risk"
+    sample_services:
+      - "Expatriate tax return preparation"
+      - "Cross-border income analysis"
+      - "Treaty eligibility review"
+
+  - id: international-compliance
+    name: Cross-Border Compliance
+    description: >
+      Expert guidance on international tax reporting and regulatory compliance.
+      We help companies and executives navigate complex rules across multiple jurisdictions.
+    benefits:
+      - "Full compliance with local and international regulations"
+      - "Audit readiness and risk management"
+      - "Efficient reporting and filing processes"
+    sample_services:
+      - "FATCA and CRS reporting"
+      - "Transfer pricing compliance"
+      - "Cross-border tax advisory"
+
+  - id: global-mobility
+    name: Global Mobility Tax Planning
+    description: >
+      Streamlined solutions for managing employees on international assignments.
+      Our services reduce administrative burdens while ensuring compliance with tax laws globally.
+    benefits:
+      - "Simplified employee mobility management"
+      - "Compliance across all host jurisdictions"
+      - "Cost-efficient global assignment strategies"
+    sample_services:
+      - "International assignment structuring"
+      - "Compensation planning and tax equalization"
+      - "Immigration and tax coordination for assignees"

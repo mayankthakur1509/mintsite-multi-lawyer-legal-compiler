@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Schema hash gate
+        run: |
+          cd compiler/schema
+          echo "Expected: $(cat output_v3_2.schema.sha256)"
+          echo -n "$(sha256sum output_v3_2.schema.json | awk '{print $1}')" > actual.sha
+          echo "Actual:   $(cat actual.sha)"
+          diff -u output_v3_2.schema.sha256 actual.sha
+
+      - name: Smoke
+        run: |
+          bash smoke/smoke.sh
+
+      - name: Tests
+        run: |
+          pytest -q
